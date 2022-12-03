@@ -1,7 +1,7 @@
 import platform
 import os
 import subprocess
-from shutil import copy, move
+from shutil import move
 
 os.chdir(os.path.dirname(__file__))
 
@@ -9,11 +9,11 @@ print("TCT_Auto Authentication のインストールを開始sます.")
 USER_NAME = input("Web認証時のユーザー名を入力してください.\nex. m23ozaki\n>> ")
 PASSWORD = input("パスワードを入力してください\n>> ")
 
-FILE_NAME = "auto_auth.py"
-with open(FILE_NAME, 'r', encoding='utf-8') as f:
+with open("auto_auth.py", 'r', encoding='utf-8') as f:
     text = f.read()
 
-with open(FILE_NAME, 'w', encoding='utf-8') as f:
+FILE_NAME = "auto_auth_cp.py"
+with open(FILE_NAME, 'w+', encoding='utf-8') as f:
     body = text.replace("m23ozaki", USER_NAME).replace("trumpet117", PASSWORD)
     f.write(body)
 
@@ -31,10 +31,10 @@ else:
 # pythonファイルのコピー
 print(f"auto_auth.py コピー先: {INSTALL_PATH}")
 if OSINFO == "Windows":
-    copy(FILE_NAME, INSTALL_PATH + FILE_NAME + "w")
+    move(FILE_NAME, INSTALL_PATH + "auto_auth.py" + "w")
 else:
-    subprocess.run(["sudo", "cp", FILE_NAME, INSTALL_PATH])
-    subprocess.run(["sudo", "chmod", "+x", INSTALL_PATH + FILE_NAME])
+    subprocess.run(["sudo", "mv", FILE_NAME, INSTALL_PATH + "auto_auth.py"])
+    subprocess.run(["sudo", "chmod", "+x", INSTALL_PATH + "auto_auth.py"])
 
 # NetworkManagerがある場合 (Ubuntuとかの場合は事前に入れてくれ)
 # 起動スクリプトのコピー
