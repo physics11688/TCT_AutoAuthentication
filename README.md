@@ -1,0 +1,2 @@
+# TCT_AutoAuthentication
+某高専のネットワーク自動認証
