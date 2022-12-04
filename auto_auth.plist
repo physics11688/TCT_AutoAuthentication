@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>TCT.auto_authentication</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/local/bin/python3</string>
+      <string>/usr/local/bin/auto_auth.py</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true />
+    <key>StandardErrorPath</key>
+    <string>/tmp/auto_aut.error</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/auto_aut.out</string>
+    <key>WatchPaths</key>
+    <array>
+      <!-- For detecting network status change by WiFi -->
+      <string>/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist</string>
+      <!-- For detecting user login -->
+      <string>/Library/Preferences/com.apple.loginwindow.plist</string>
+    </array>
+  </dict>
+</plist>

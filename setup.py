@@ -45,4 +45,14 @@ if os.path.exists(DISPATH):
     subprocess.run(["sudo", "chmod", "+x", DISPATH + SCRIPT_NAME])
     print(f"auto_authコピー先: {DISPATH}")
 
+if OSINFO == "Darwin":
+    cmds = [
+        ["sudo", "chown", "root", "auto_auth.plist"],
+        ["sudo", "chmod", "+x", "auto_auth.plist"],
+        ["sudo", "cp", "auto_auth.plist", "/Library/LaunchDaemons/"]
+        ["sudo", "launchctl", "load", "/Library/LaunchDaemons/auto_auth.plist"],
+    ]
+    for cmd in cmds:
+        subprocess.run(cmd)
+
 print("インストールが正常に終了しました")
