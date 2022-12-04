@@ -69,6 +69,16 @@ NetworkManagerが入ってれば `setup.py` でやっちゃいます.
 <br>
 
 ### Mac
+Pythonにフルディスクアクセスが必要です.
+
+使用してる最新のPythonにアクセス権を与えましょう.
+
+<br>
+
+![mac](./mac.png)
+
+<br>
+
 `setup.py`で [launchd](https://www.launchd.info/) を設定してあります。
 
 - ネットワーク参加時
