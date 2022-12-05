@@ -1,16 +1,16 @@
 # TCT_AutoAuthentication
 某高専のネットワーク自動認証です.
 
-- auto_auth.py: こいつで処理
-- auto_auth: Linuxユーザーのみ使用
+- auto_auth.py: 主にこいつで処理
+- auto_auth.[xml|plist]: プログラムの自動起動
 - パスワード変わったら再インストールする
 
 <br>
 
-## Requiremen
+## Requirement
 Python3が入ってれば多分動きます.
 
-auto_auth.py は標準ライブラリのみで記述してあります.
+メインファイルの `auto_auth.py` は, 標準ライブラリのみで記述してあります.
 
 <br>
 
@@ -36,68 +36,54 @@ $ python3 setup.py
 
 <br>
 
-## auto start settings
-### Windows
+#### Macのみ
+Macのみ追加で設定が必要です.
 
-- [タスクスケジューラ](https://jm1xtk.com/cnt/109_task/index.php)を起動して ↓ の2つを設定
-- 操作はもちろん【プログラムの開始】
-
-<br>
-
-|     用途     |   スリープ復帰時用   |             ネットワーク参加時用             |
-| :----------: | :------------------: | :------------------------------------------: |
-| タスクの開始 |      イベント時      |                  イベント時                  |
-|     ログ     |       システム       | Microsoft-Windows-NetworkProfile/Operational |
-|    ソース    | Power-Troubleshooter |                NetworkProfile                |
-|  イベントID  |          1           |                    10000                     |
-
-<br>
-
-![schtasks](./schtasks.svg)
-
-<br>
-
-### Linux
-NetworkManagerが入ってれば `setup.py` でやっちゃいます.
-
-具体的には [NetworkManager-dispatcher](https://man.archlinux.org/man/NetworkManager-dispatcher.8.en) からスクリプトで `auto_auth.py` を起動します.
-
-`connectivity-change` はもちろん起動時にも効きます.
-(ネットワーク参加時に効くから)
-
-
-<br>
-
-### Mac
 Pythonにフルディスクアクセスが必要です.
 
 使用してる最新のPythonにアクセス権を与えましょう.
 
 <br>
 
-![mac](./mac.png)
+![mac](./pic/mac.png)
 
 <br>
 
-`setup.py`で [launchd](https://www.launchd.info/) を設定してあります。
-
-- ネットワーク参加時
-- ログイン時
-
-とかに `auto_auth.py` を実行します。
 
 <br>
+
+## Auto Start Settings
+### Windows
+
+`setup.py` では ↓ を実行してます.
+XMLファイルのインポートです.
+
+```powershell
+> schtasks.exe /Create /TN TCT_AutoAuth /XML \win\auto_auth.xml 
+```
+
+
+<br>
+
+### Linux
+
+NetworkManagerさえ入っていたら, `setup.py` で起動スクリプトを設置してます. 
+
+"connectivity-change events" のみ[チェックしてます](https://man.archlinux.org/man/NetworkManager-dispatcher.8.en).
 
 ```bash
-# ログ
-% ls /tmp/auto_aut*
+$ cat /etc/NetworkManager/dispatcher.d/auto_auth
+```
 
+
+
+<br>
+
+### Mac
+
+`setup.py` で launchd用の起動スクリプトを設置してます. 
+
+```bash
 # plist
 % cat /Library/LaunchDaemons/auto_auth.plist
-
-# 情報見れる
-% sudo launchctl list TCT.auto_authentication 
-
-# 詳細
-% sudo launchctl print system/TCT.auto_authentication
 ```
