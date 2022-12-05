@@ -10,6 +10,17 @@
 ```powershell
 # タスクの詳細確認
 > Get-ScheduledTaskInfo TCT_AutoAuth
+
+# タスクスケジューラのログ有効化 (管理者としてターミナルを開くこと)
+> $log = Get-WinEvent -ListLog Microsoft-Windows-TaskScheduler/Operational
+
+> $log.IsEnabled = $true
+
+> $log.SaveChanges()
+
+
+# 以降, ログがふつーに見れる (長えから関数かエイリアス・・・)
+> Get-WinEvent -Logname Microsoft-Windows-TaskScheduler/Operational | Where-Object {$_.Message -Like "*TCT*"} #| Format-List
 ```
 
 <br>

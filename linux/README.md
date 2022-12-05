@@ -11,3 +11,10 @@ NetworkManagerが入ってるのを前提に,
 具体的には, [NetworkManager-dispatcher](https://man.archlinux.org/man/NetworkManager-dispatcher.8.en) からスクリプトで `auto_auth.py` を起動します.
 
 ちなみに, `connectivity-change` はもちろん起動時にも効きます. (ネットワーク参加時に効くから)
+
+```bash
+# ログ. とうか man journalctl すれ.
+$ journalctl -u NetworkManager-dispatcher.service -e
+```
+
+
