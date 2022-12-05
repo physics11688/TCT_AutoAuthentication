@@ -105,8 +105,8 @@ DISPATH = "/etc/NetworkManager/dispatcher.d/"
 SCRIPT_NAME = "./linux/auto_auth"
 if (OSINFO != "Windows") and (OSINFO != "Darwin"):
     if os.path.exists(DISPATH):  # フォルダチェック
+        subprocess.run(["sudo", "chmod", "+x", SCRIPT_NAME])
         subprocess.run(["sudo", "cp", SCRIPT_NAME, DISPATH])
-        subprocess.run(["sudo", "chmod", "+x", DISPATH + SCRIPT_NAME])
         print(f"auto_authコピー先: {DISPATH}")
     else:
         print("NetworkManagerがインストールされていません.\nプログラムを終了します.")
