@@ -3,5 +3,5 @@
 
 # connectivity-change events のみチェック
 if [ "$2" = "connectivity-change" ]; then
-    /usr/bin/python3 /home/monitor_pi/local/bin/auto_auth.py
+    /usr/bin/python3 /usr/local/bin/auto_auth.py
 fi
