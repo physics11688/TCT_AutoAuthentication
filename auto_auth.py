@@ -13,6 +13,7 @@ import urllib.request
 import urllib.parse
 import ssl
 from socket import gethostname
+from platform import system
 
 # ユーザー名やら何やら
 USER_NAME = "m23ozaki"
@@ -35,6 +36,9 @@ for i in range(10):  # これ以上待ってもだめならなんかおかしい
         if "tokuyama.ac.jp" in body:
             break
         else:
+            if "Darwin" == system():  # Macだけstdoutにlogを吐く
+                import datetime
+                print(f"already authenticated {datetime.datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}")
             exit(0)
 
 # パースしてURL取得
@@ -56,7 +60,6 @@ with urllib.request.urlopen(redirect_URL, timeout=1) as response:
 
 # POSTの処理
 values = {'username': USER_NAME, 'password': PASSWORD, '4Tredir': TEST_URL, 'magic': parameter_Magic}
-
 data = urllib.parse.urlencode(values)
 data = data.encode('utf-8')  # data should be bytes
 req = urllib.request.Request(url=redirect_URL, data=data)
@@ -68,3 +71,8 @@ with urllib.request.urlopen(req) as response:
 if "raspberrypi" == gethostname():
     from subprocess import run
     run(["systemctl", "restart", "systemd-timesyncd.service"])
+
+# Macだけstdoutにlogを吐く
+if "Darwin" == system():
+    import datetime
+    print(f"Authentication succeeded {datetime.datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}")

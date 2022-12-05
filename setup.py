@@ -32,6 +32,10 @@ HOME = os.path.expanduser("~")  # ホームディレクトリのパス取得
 
 # auto_auth.py のインストールディレクトリ設定
 if OSINFO == "Windows":
+    if "" in HOME:
+        print("\nダウンロードしたフォルダのPATHに 空白 が含まれています.")
+        print("出直してきやがれ (別のところにダウンロードしてね♥)")
+        exit(0)
     INSTALL_PATH = HOME + "\\local\\bin\\"
     os.makedirs(INSTALL_PATH, exist_ok=True)
 else:
@@ -44,7 +48,7 @@ if OSINFO == "Windows":
     targetPATH = INSTALL_PATH + "auto_auth.py" + "w"
     move(FILE_NAME, targetPATH)
 else:
-    print("\n【自分のパソコンの】パスワードを入力してください.")
+    print("\n以降パスワードを聞かれたら,【自分のパソコンの】パスワードを入力してください.")
     subprocess.run(["sudo", "mv", FILE_NAME, INSTALL_PATH + "auto_auth.py"])
     subprocess.run(["sudo", "chmod", "+x", INSTALL_PATH + "auto_auth.py"])
 
@@ -96,7 +100,7 @@ if OSINFO == "Darwin":
     ]
     for cmd in cmds:
         subprocess.run(cmd)
-    print("Pythonにフルディスクアクセスを与えてください.")
+    print("Pythonにフルディスクアクセス権限を与えてください.")
     print("")
 
 # Linux: NetworkManagerがある場合 (Ubuntuとかの場合は事前に入れてくれ)
