@@ -3,6 +3,12 @@ import platform
 import os
 import subprocess
 from shutil import move
+from secrets import token_hex
+
+
+def pseudo_encrypt(plaintext, key):
+    return repr("".join([chr(ord(p) ^ ord(k)) for (p, k) in zip(plaintext, key)]))
+
 
 # ディレクトリの移動
 os.chdir(os.path.dirname(__file__))
@@ -19,12 +25,17 @@ while True:
     else:
         print("パスワードが一致しません")
 
+key = token_hex(16)
+USER_NAME = pseudo_encrypt(USER_NAME, key)
+PASSWORD = pseudo_encrypt(PASSWORD, key)
+
 with open("auto_auth.py", 'r', encoding='utf-8') as f:
     text = f.read()
 
 FILE_NAME = "auto_auth_cp.py"
 with open(FILE_NAME, 'w+', encoding='utf-8') as f:
     body = text.replace("m23ozaki", USER_NAME).replace("trumpet117", PASSWORD)
+    body = body.replace('KEY = ""', f'KEY = "{key}"')
     f.write(body)
 
 OSINFO = platform.system()  # OS判定

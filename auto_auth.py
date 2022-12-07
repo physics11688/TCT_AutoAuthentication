@@ -15,10 +15,16 @@ import ssl
 from socket import gethostname
 from platform import system
 
+
+def pseudo_decrypt(ciphertext, key):
+    return "".join([chr(ord(p) ^ ord(k)) for (p, k) in zip(eval(ciphertext), key)])
+
+
 # ユーザー名やら何やら
-USER_NAME = "m23ozaki"
-PASSWORD = "trumpet117"
+USER_NAME = r"m23ozaki"
+PASSWORD = r"trumpet117"
 TEST_URL = "https://yahoo.com/"
+KEY = ""
 
 # HTTPS用
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -59,7 +65,12 @@ with urllib.request.urlopen(redirect_URL, timeout=1) as response:
     body = response.read().decode()
 
 # POSTの処理
-values = {'username': USER_NAME, 'password': PASSWORD, '4Tredir': TEST_URL, 'magic': parameter_Magic}
+values = {
+    'username': pseudo_decrypt(USER_NAME, KEY),
+    'password': pseudo_decrypt(PASSWORD, KEY),
+    '4Tredir': TEST_URL,
+    'magic': parameter_Magic
+}
 data = urllib.parse.urlencode(values)
 data = data.encode('utf-8')  # data should be bytes
 req = urllib.request.Request(url=redirect_URL, data=data)
