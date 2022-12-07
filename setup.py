@@ -32,7 +32,7 @@ HOME = os.path.expanduser("~")  # ホームディレクトリのパス取得
 
 # auto_auth.py のインストールディレクトリ設定
 if OSINFO == "Windows":
-    if "" in HOME:
+    if " " in HOME:
         print("\nダウンロードしたフォルダのPATHに 空白 が含まれています.")
         print("出直してきやがれ (別のところにダウンロードしてね♥)")
         exit(0)
