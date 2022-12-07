@@ -1,6 +1,6 @@
 ## auto start settings
 
-NetworkManagerが入ってるのを前提に,
+[NetworkManager](https://networkmanager.dev/docs/)が入ってるのを前提に,
 
 - ログの監視を行って
 - イベントが起きたときに

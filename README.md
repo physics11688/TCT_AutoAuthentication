@@ -1,8 +1,8 @@
 # TCT_AutoAuthentication
 某高専のネットワーク自動認証です.
 
-- auto_auth.py: 主にこいつで処理
-- auto_auth.[xml|plist]: プログラムの自動起動
+- auto_auth.py: 主にこいつで処理<br>
+- auto_auth.[xml|plist]: プログラムの自動起動<br>
 - パスワード変わったら再インストールする
 
 <br>
@@ -23,6 +23,9 @@ Python3が入ってれば多分動きます.
 ```bash
 # くろ～ん
 > git clone git@github.com:physics11688/TCT_AutoAuthentication.git
+
+# ↑が出来ない人は ssh とかを調べるとして, ↓ で入る
+> git clone https://github.com/physics11688/TCT_AutoAuthentication.git
 
 # 移動
 > cd TCT_AutoAuthentication

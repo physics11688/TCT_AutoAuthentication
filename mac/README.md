@@ -13,6 +13,10 @@
 # ログ
 % ls /tmp/auto_aut*
 
+# ログ見る
+% cat /tmp/auto_aut.out
+already authenticated 2022年12月05日 21:13:00  # みたいになる
+
 # plist
 % cat /Library/LaunchDaemons/auto_auth.plist
 

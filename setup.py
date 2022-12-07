@@ -6,6 +6,7 @@ from shutil import move
 from secrets import token_hex
 
 
+# 疑似暗号化関数
 def pseudo_encrypt(plaintext, key):
     return repr("".join([chr(ord(p) ^ ord(k)) for (p, k) in zip(plaintext, key)]))
 
@@ -111,7 +112,7 @@ if OSINFO == "Darwin":
     ]
     for cmd in cmds:
         subprocess.run(cmd)
-    print("Pythonにフルディスクアクセス権限を与えてください.")
+    # print("Pythonにフルディスクアクセス権限を与えてください.")
     print("")
 
 # Linux: NetworkManagerがある場合 (Ubuntuとかの場合は事前に入れてくれ)

@@ -16,6 +16,7 @@ from socket import gethostname
 from platform import system
 
 
+# 疑似解号関数
 def pseudo_decrypt(ciphertext, key):
     return "".join([chr(ord(p) ^ ord(k)) for (p, k) in zip(eval(ciphertext), key)])
 
