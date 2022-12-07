@@ -24,7 +24,7 @@ def pseudo_decrypt(ciphertext, key):
 # ユーザー名やら何やら
 USER_NAME = r"m23ozaki"
 PASSWORD = r"trumpet117"
-TEST_URL = "https://yahoo.com/"
+TEST_URL = "https://ipecho.net/plain"
 KEY = ""
 
 # HTTPS用
@@ -57,8 +57,8 @@ for line in body.split("\""):
 
 # ex. 0104ca641fdaa162
 parameter_Magic = redirect_URL[redirect_URL.find("?") + 1:]  # クエリパラメータ取得
-print(redirect_URL)
-print(parameter_Magic)
+# print(redirect_URL)
+# print(parameter_Magic)
 
 # 一回アクセスしないと認証ページを作成しないようだ. ここえらいハマった.
 # そのままPOSTの処理をすると curl: (52) Empty reply from server
@@ -87,4 +87,4 @@ if "raspberrypi" == gethostname():
 # Macだけstdoutにlogを吐く
 if "Darwin" == system():
     import datetime
-    print(f"Authentication succeeded {datetime.datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}")
+    print(f"Authentication Successful {datetime.datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}")
