@@ -35,6 +35,18 @@ Python3が入ってれば多分動きます.
 
 # セットアップ (UNIX系)
 $ python3 setup.py
+
+```
+
+<br>
+
+## Uninstall
+```bash
+# Windows
+> python uninstall.py
+
+# UNIX系
+$ python3 uninstall.py
 ```
 
 <br>

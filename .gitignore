@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 *cp_xml
+
+./win/auto_auth_cp.xml

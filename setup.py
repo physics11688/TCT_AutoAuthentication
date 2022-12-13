@@ -97,6 +97,8 @@ if OSINFO == "Windows":
         "schtasks.exe",
         "-Verb",
         "RunAs",
+        "-WindowStyle",
+        "Hidden",
         "-ArgumentList",
         f'"/Create /TN TCT_AutoAuth /XML {path_to_XML}"'  # 新しくプロセス起動してるので絶対パス
     ]
