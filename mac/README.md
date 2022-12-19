@@ -14,11 +14,11 @@
 % ls /tmp/auto_aut*
 
 # ログ見る
-% cat /tmp/auto_aut.out
+% cat /tmp/auto_auth.out
 already authenticated 2022年12月05日 21:13:00  # みたいになる
 
 # plist
-% cat /Library/LaunchDaemons/auto_auth.plist
+% sudo cat /Library/LaunchDaemons/auto_auth.plist
 
 # 情報見れる
 % sudo launchctl list TCT.auto_authentication 
