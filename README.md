@@ -17,8 +17,8 @@ Python3が入ってれば多分動きます.
 ### Raspberry Pi の場合
 Raspiは標準では WiFi接続に [dhcpcd](https://wiki.archlinux.jp/index.php/Dhcpcd) を使用してますが, 
 
-このままだとTCTのWiFiには接続出来ないのでNetworkManagerに切り替えてください。
-(初めからインストールされている)
+このままだとTCTのWiFiには接続出来ないのでNetworkManagerに切り替えてください。<br>
+(初めからインストールだけはされている)
 
 [具体的なことがわからなかったらここをみる](https://arduinobook.stradty.com/accounts/Appendix1-1/#%E5%AD%A6%E6%A0%A1%E3%81%AEwi-fi%E3%81%AB%E6%8E%A5%E7%B6%9A%E3%81%97%E3%81%A6raspi%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88).
 
