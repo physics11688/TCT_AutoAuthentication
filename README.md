@@ -5,6 +5,12 @@
 - auto_auth.[xml|plist]: プログラムの自動起動<br>
 - パスワード変わったら再インストールする
 
+#### 2023/1/28 追記
+センターのページからMacアドレスで自動認証する登録が出来るようになったみたいです。
+
+
+なので、セキュリティ上の理由でMacアドレスのランダム化をしたままで自動認証したい場合はこちらを使うと便利です。
+
 <br>
 
 ## Requirements
@@ -15,7 +21,7 @@ Python3が入ってれば多分動きます.
 <br>
 
 ### Raspberry Pi の場合
-Raspiは標準では WiFi接続に [dhcpcd](https://wiki.archlinux.jp/index.php/Dhcpcd) を使用してますが, 
+Raspiは標準では WiFi接続に [dhcpcd](https://wiki.archlinux.jp/index.php/Dhcpcd) を使用してますが,
 
 このままだとTCTのWiFiには接続出来ないのでNetworkManagerに切り替えてください。<br>
 (初めからインストールだけはされている)
@@ -86,7 +92,7 @@ $ python3 uninstall.py
 XMLファイルのインポートです.
 
 ```powershell
-> schtasks.exe /Create /TN TCT_AutoAuth /XML \win\auto_auth.xml 
+> schtasks.exe /Create /TN TCT_AutoAuth /XML \win\auto_auth.xml
 ```
 
 
@@ -94,7 +100,7 @@ XMLファイルのインポートです.
 
 ### Linux
 
-NetworkManagerさえ入っていたら, `setup.py` で起動スクリプトを設置してます. 
+NetworkManagerさえ入っていたら, `setup.py` で起動スクリプトを設置してます.
 
 "connectivity-change events" のみ[チェックしてます](https://man.archlinux.org/man/NetworkManager-dispatcher.8.en).
 
@@ -108,7 +114,7 @@ $ cat /etc/NetworkManager/dispatcher.d/auto_auth
 
 ### Mac
 
-`setup.py` で launchd用の起動スクリプトを設置してます. 
+`setup.py` で launchd用の起動スクリプトを設置してます.
 
 ```bash
 # plist
